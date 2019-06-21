@@ -34,7 +34,7 @@ jobs:
             terraform init
             terraform plan
             terraform apply -auto-approve
-  deploy-static:
+  deploy:
     docker:
       - image: circleci/python:3.6.8-jessie
     working_directory: ~/repo
@@ -48,16 +48,15 @@ jobs:
           name: Deploy to S3
           command: |
             aws s3 sync ./dist/ s3://jwtdeco.de --delete --acl public-read
-            aws cloudfront create-invalidation --distribution-id x --paths "*"
+            aws cloudfront create-invalidation --distribution-id E3Q8OF99CAW40W --paths "/*"
 workflows:
   version: 2
   test_build_plan_deploy:
     jobs:
-      - test
       - build
       - plan:
           requires:
             - build
-      - deploy
+      - deploy:
           requires:
             - plan
