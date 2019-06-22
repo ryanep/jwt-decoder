@@ -20,6 +20,11 @@ terraform {
 resource "aws_s3_bucket" "cdn" {
   bucket = "${var.cdn_bucket_name}"
   acl    = "public-read"
+
+  website {
+    index_document = "index.html"
+    error_document = "404.html"
+  }
 }
 
 locals {
@@ -43,6 +48,7 @@ resource "aws_cloudfront_distribution" "cdn_s3_distribution" {
   aliases         = ["jwtdecode.ryanep.com"]
   enabled         = true
   is_ipv6_enabled = true
+  default_root_object = "index.html"
 
   ordered_cache_behavior {
     path_pattern     = "*"
