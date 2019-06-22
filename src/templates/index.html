@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>jwtdeco.de</title>
+    <style>
+      html, body, div, span, applet, object, iframe,
+      h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+      a, abbr, acronym, address, big, cite, code,
+      del, dfn, em, img, ins, kbd, q, s, samp,
+      small, strike, strong, sub, sup, tt, var,
+      b, u, i, center,
+      dl, dt, dd, ol, ul, li,
+      fieldset, form, label, legend,
+      table, caption, tbody, tfoot, thead, tr, th, td,
+      article, aside, canvas, details, embed,
+      figure, figcaption, footer, header, hgroup,
+      menu, nav, output, ruby, section, summary,
+      time, mark, audio, video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        vertical-align: baseline;
+      }
+      /* HTML5 display-role reset for older browsers */
+      article, aside, details, figcaption, figure,
+      footer, header, hgroup, menu, nav, section {
+        display: block;
+      }
+      body {
+        line-height: 1;
+      }
+      ol, ul {
+        list-style: none;
+      }
+      blockquote, q {
+        quotes: none;
+      }
+      blockquote:before, blockquote:after,
+      q:before, q:after {
+        content: '';
+        content: none;
+      }
+      table {
+        border-collapse: collapse;
+        border-spacing: 0;
+      }
+
+      *, *::before, *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        font-size: 62.5%;
+        height: 100%;
+      }
+
+      body {
+        display: flex;
+        flex-flow: column wrap;
+        height: 100%;
+        margin: 0;
+        font-size: 1.6rem;
+        line-height: 1.5;
+        padding: 2rem;
+      }
+
+      .content {
+        display: flex;
+        flex-flow: row wrap;
+        height: 100%;
+        width: 100%;
+        border: 0.2rem solid rgba(0, 0, 0, 0.2);
+        border-radius: 0.4rem;
+      }
+
+      .encoded {
+        width: 50%;
+        font-size: 2rem;
+        padding: 2rem;
+        overflow-y: scroll;
+        outline: none;
+        font-weight: 600;
+      }
+
+      .encoded span {
+        background-color: transparent;
+        border: 0.1rem solid transparent;
+        transition: all 0.3s ease;
+        padding: 0.2rem 0.4rem;
+        border-radius: 0.4rem;
+      }
+
+      .encoded span:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+        border: 0.1rem solid rgba(0, 0, 0, 0.1);
+      }
+
+      .decoded section:nth-child(1), .encoded span:nth-child(1) {
+        color: red;
+      }
+
+      .decoded section:nth-child(2), .encoded span:nth-child(3) {
+        color: green;
+      }
+
+      .decoded section:nth-child(3), .encoded span:nth-child(5) {
+        color: blue;
+      }
+
+      .decoded {
+        width: 50%;
+        border-left: 0.2rem solid rgba(0, 0, 0, 0.2);
+        font-size: 2rem;
+        overflow-y: scroll;
+        font-weight: 600;
+      }
+
+      .decoded div {
+        white-space: pre-wrap;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      <code id="encoded" class="encoded" contenteditable>JWT</code>
+      <code id="decoded" class="decoded">Decoded</code>
+    </div>
+    <script src="/app.js"></script>
+  </body>
+</html>

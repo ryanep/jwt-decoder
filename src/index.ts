@@ -1,7 +1,5 @@
 import { decode } from './jwt';
 
-console.log('example');
-
 const encodedElement = document.getElementById('encoded');
 const decodedElement = document.getElementById('decoded');
 
@@ -20,9 +18,18 @@ const handleEncodedChange = (event: Event) => {
   const decodedJwt = decode(input.innerText);
   // decodedElement.innerText = JSON.stringify(decodedJwt, null, 2);
   decodedElement.innerHTML = `
-    <div>${JSON.stringify(decodedJwt.header, null, 2)}</div>
-  <div>${JSON.stringify(decodedJwt.body, null, 2)}</div>
-    <div>${decodedJwt.signature}</div>
+    <section class="decoded-header">
+      <h2>Header</h2>
+      <div>${JSON.stringify(decodedJwt.header, null, 2)}</div>
+    </section>
+    <section class="decoded-header">
+      <h2>Body</h2>
+      <div>${JSON.stringify(decodedJwt.body, null, 2)}</div>
+    </section>
+    <section class="decoded-header">
+      <h2>Signature</h2>
+      <div>${decodedJwt.signature}</div>
+    </section>
   `;
 };
 

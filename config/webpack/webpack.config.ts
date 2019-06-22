@@ -1,6 +1,6 @@
 import webpack from 'webpack';
 import path from 'path';
-// import HtmlWebpackPlugin from 'html-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 // import HtmlWebpackInlineSourcePlugin from 'html-webpack-inline-source-plugin';
 
 const config: webpack.Configuration = {
@@ -39,7 +39,9 @@ const config: webpack.Configuration = {
     path: path.join(process.cwd(), 'dist/'),
   },
   plugins: [
-    // new HtmlWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: 'src/templates/index.html'
+    }),
     // new HtmlWebpackInlineSourcePlugin()
   ],
 };

@@ -8,7 +8,6 @@ export const decode = (jwt: string): Jwt => {
   }
 
   const decoded = [jwtSegments[0], jwtSegments[1]].map(segment => {
-    console.log(segment);
     return window.atob(segment);
   });
 
