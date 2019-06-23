@@ -26,7 +26,7 @@ const handleEncodedChange = (event: Event) => {
       )}</div>
     </section>
     <section class="decoded-header">
-      <h2 class="section-header">Body</h2>
+      <h2 class="section-header">Payload</h2>
       <div class="section-body">${JSON.stringify(
         decodedJwt.body,
         null,
