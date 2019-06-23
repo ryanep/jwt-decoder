@@ -12,23 +12,22 @@ const handleEncodedChange = (event: Event) => {
 
   const segments = input.innerText.split('.');
   input.innerHTML = `
-    <span>${segments[0]}</span><span>.</span><span>${segments[1]}</span><span>.</span><span>${segments[2]}</span>
+    <span class="jwt-segment">${segments[0]}</span><span>.</span><span class="jwt-segment">${segments[1]}</span><span>.</span><span class="jwt-segment">${segments[2]}</span>
   `;
 
   const decodedJwt = decode(input.innerText);
-  // decodedElement.innerText = JSON.stringify(decodedJwt, null, 2);
   decodedElement.innerHTML = `
     <section class="decoded-header">
-      <h2>Header</h2>
-      <div>${JSON.stringify(decodedJwt.header, null, 2)}</div>
+      <h2 class="section-header">Header</h2>
+      <div class="section-body">${JSON.stringify(decodedJwt.header, null, 2)}</div>
     </section>
     <section class="decoded-header">
-      <h2>Body</h2>
-      <div>${JSON.stringify(decodedJwt.body, null, 2)}</div>
+      <h2 class="section-header">Body</h2>
+      <div class="section-body">${JSON.stringify(decodedJwt.body, null, 2)}</div>
     </section>
     <section class="decoded-header">
-      <h2>Signature</h2>
-      <div>${decodedJwt.signature}</div>
+      <h2 class="section-header">Signature</h2>
+      <div class="section-body">${decodedJwt.signature}</div>
     </section>
   `;
 };
@@ -38,3 +37,4 @@ const initEvents = () => {
 };
 
 initEvents();
+

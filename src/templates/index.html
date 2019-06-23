@@ -1,21 +1,89 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>jwtdeco.de</title>
+    <title>JSON Web Token Decoder - jwtdeco.de</title>
     <style>
-      html, body, div, span, applet, object, iframe,
-      h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-      a, abbr, acronym, address, big, cite, code,
-      del, dfn, em, img, ins, kbd, q, s, samp,
-      small, strike, strong, sub, sup, tt, var,
-      b, u, i, center,
-      dl, dt, dd, ol, ul, li,
-      fieldset, form, label, legend,
-      table, caption, tbody, tfoot, thead, tr, th, td,
-      article, aside, canvas, details, embed,
-      figure, figcaption, footer, header, hgroup,
-      menu, nav, output, ruby, section, summary,
-      time, mark, audio, video {
+      a,
+      abbr,
+      acronym,
+      address,
+      applet,
+      article,
+      aside,
+      audio,
+      b,
+      big,
+      blockquote,
+      body,
+      canvas,
+      caption,
+      center,
+      cite,
+      code,
+      dd,
+      del,
+      details,
+      dfn,
+      div,
+      dl,
+      dt,
+      em,
+      embed,
+      fieldset,
+      figcaption,
+      figure,
+      footer,
+      form,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      header,
+      hgroup,
+      html,
+      i,
+      iframe,
+      img,
+      ins,
+      kbd,
+      label,
+      legend,
+      li,
+      mark,
+      menu,
+      nav,
+      object,
+      ol,
+      output,
+      p,
+      pre,
+      q,
+      ruby,
+      s,
+      samp,
+      section,
+      small,
+      span,
+      strike,
+      strong,
+      sub,
+      summary,
+      sup,
+      table,
+      tbody,
+      td,
+      tfoot,
+      th,
+      thead,
+      time,
+      tr,
+      tt,
+      u,
+      ul,
+      var,
+      video {
         margin: 0;
         padding: 0;
         border: 0;
@@ -23,21 +91,34 @@
         vertical-align: baseline;
       }
       /* HTML5 display-role reset for older browsers */
-      article, aside, details, figcaption, figure,
-      footer, header, hgroup, menu, nav, section {
+      article,
+      aside,
+      details,
+      figcaption,
+      figure,
+      footer,
+      header,
+      hgroup,
+      menu,
+      nav,
+      section {
         display: block;
       }
       body {
         line-height: 1;
       }
-      ol, ul {
+      ol,
+      ul {
         list-style: none;
       }
-      blockquote, q {
+      blockquote,
+      q {
         quotes: none;
       }
-      blockquote:before, blockquote:after,
-      q:before, q:after {
+      blockquote:after,
+      blockquote:before,
+      q:after,
+      q:before {
         content: '';
         content: none;
       }
@@ -46,7 +127,9 @@
         border-spacing: 0;
       }
 
-      *, *::before, *::after {
+      *,
+      *::after,
+      *::before {
         box-sizing: border-box;
       }
 
@@ -62,7 +145,10 @@
         margin: 0;
         font-size: 1.6rem;
         line-height: 1.5;
-        padding: 2rem;
+        padding: 1rem;
+        -webkit-font-smoothing: antialiased;
+        font-family: -apple-system, system-ui, BlinkMacSystemFont;
+        overflow: hidden;
       }
 
       .content {
@@ -70,20 +156,26 @@
         flex-flow: row wrap;
         height: 100%;
         width: 100%;
-        border: 0.2rem solid rgba(0, 0, 0, 0.2);
+        border: 0.2rem solid rgba(0, 0, 0, 0.1);
         border-radius: 0.4rem;
       }
 
       .encoded {
         width: 50%;
+        height: 100%;
         font-size: 2rem;
-        padding: 2rem;
         overflow-y: scroll;
-        outline: none;
         font-weight: 600;
       }
 
-      .encoded span {
+      .encoded code {
+        display: block;
+        outline: none;
+        padding: 2rem;
+        font-size: 2.2rem;
+      }
+
+      .jwt-segment {
         background-color: transparent;
         border: 0.1rem solid transparent;
         transition: all 0.3s ease;
@@ -91,26 +183,30 @@
         border-radius: 0.4rem;
       }
 
-      .encoded span:hover {
-        background-color: rgba(0, 0, 0, 0.1);
-        border: 0.1rem solid rgba(0, 0, 0, 0.1);
+      .jwt-segment:hover {
+        background-color: #ffff0020;
+        border: 0.1rem solid #f1f160;
       }
 
-      .decoded section:nth-child(1), .encoded span:nth-child(1) {
+      .decoded section:nth-child(1),
+      .encoded span:nth-child(1) {
         color: red;
       }
 
-      .decoded section:nth-child(2), .encoded span:nth-child(3) {
+      .decoded section:nth-child(2),
+      .encoded span:nth-child(3) {
         color: green;
       }
 
-      .decoded section:nth-child(3), .encoded span:nth-child(5) {
+      .decoded section:nth-child(3),
+      .encoded span:nth-child(5) {
         color: blue;
       }
 
       .decoded {
         width: 50%;
-        border-left: 0.2rem solid rgba(0, 0, 0, 0.2);
+        height: 100%;
+        border-left: 0.2rem solid rgba(0, 0, 0, 0.1);
         font-size: 2rem;
         overflow-y: scroll;
         font-weight: 600;
@@ -119,12 +215,45 @@
       .decoded div {
         white-space: pre-wrap;
       }
+
+      .section-header {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        padding: 0.5rem;
+        font-size: 1.4rem;
+        color: #000000;
+        background-color: #fafafa;
+        border-bottom: 0.1rem solid rgba(0, 0, 0, 0.1);
+      }
+
+      .decoded-header:first-child .section-header {
+        border-top: 0;
+      }
+
+      .section-body {
+        padding: 2rem;
+        font-family: monospace;
+        font-size: 1.8rem;
+        border-bottom: 0.1rem solid rgba(0, 0, 0, 0.1);
+      }
+
+      .decoded-header:last-child .section-body {
+        border-bottom: 0;
+      }
     </style>
   </head>
   <body>
     <div class="content">
-      <code id="encoded" class="encoded" contenteditable>JWT</code>
-      <code id="decoded" class="decoded">Decoded</code>
+      <div id="encoded" class="encoded">
+        <section class="decoded-header">
+          <h2 class="section-header">JSON Web Token</h2>
+          <code id="encoded" contenteditable>
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+          </code>
+        </section>
+      </div>
+      <div id="decoded" class="decoded"></div>
     </div>
     <script src="/app.js"></script>
   </body>
