@@ -7,6 +7,20 @@ dependencies:
   cache_directories:
     - node_modules
 jobs:
+  test:
+    docker:
+      - image: circleci/node:10.15.0
+    steps:
+      - checkout
+      - run:
+          name: Install node modules
+          command: yarn
+      - run:
+          name: Lint code
+          command: yarn lint
+      - run:
+          name: Test code
+          command: yarn test
   build:
     docker:
       - image: circleci/node:10.15.0
@@ -15,6 +29,12 @@ jobs:
       - run:
           name: Install node modules
           command: yarn
+      - run:
+          name: Lint code
+          command: yarn lint
+      - run:
+          name: Test code
+          command: yarn test
       - run:
           name: Test code
           command: yarn build
@@ -53,6 +73,7 @@ workflows:
   version: 2
   test_build_plan_deploy:
     jobs:
+      - test
       - build
       - plan:
           requires:
