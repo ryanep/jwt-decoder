@@ -1,4 +1,4 @@
-export type Jwt = {
+export interface Jwt {
   header: {
     alg: string;
     typ: string;

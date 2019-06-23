@@ -1,4 +1,4 @@
-import { Jwt } from './types/jwt';
+import { Jwt } from '../types/jwt';
 
 export const decode = (jwt: string): Jwt => {
   const jwtSegments = jwt.split('.');

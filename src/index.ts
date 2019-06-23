@@ -1,4 +1,4 @@
-import { decode } from './jwt';
+import { decode } from './utils/jwt';
 
 const encodedElement = document.getElementById('encoded');
 const decodedElement = document.getElementById('decoded');
@@ -19,11 +19,19 @@ const handleEncodedChange = (event: Event) => {
   decodedElement.innerHTML = `
     <section class="decoded-header">
       <h2 class="section-header">Header</h2>
-      <div class="section-body">${JSON.stringify(decodedJwt.header, null, 2)}</div>
+      <div class="section-body">${JSON.stringify(
+        decodedJwt.header,
+        null,
+        2,
+      )}</div>
     </section>
     <section class="decoded-header">
       <h2 class="section-header">Body</h2>
-      <div class="section-body">${JSON.stringify(decodedJwt.body, null, 2)}</div>
+      <div class="section-body">${JSON.stringify(
+        decodedJwt.body,
+        null,
+        2,
+      )}</div>
     </section>
     <section class="decoded-header">
       <h2 class="section-header">Signature</h2>
@@ -37,4 +45,3 @@ const initEvents = () => {
 };
 
 initEvents();
-

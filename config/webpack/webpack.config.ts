@@ -1,7 +1,6 @@
 import webpack from 'webpack';
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-// import HtmlWebpackInlineSourcePlugin from 'html-webpack-inline-source-plugin';
 
 const config: webpack.Configuration = {
   mode: 'production',
@@ -40,9 +39,8 @@ const config: webpack.Configuration = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'src/templates/index.html'
+      template: 'src/templates/index.html',
     }),
-    // new HtmlWebpackInlineSourcePlugin()
   ],
 };
 
