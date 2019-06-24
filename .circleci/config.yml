@@ -21,6 +21,20 @@ jobs:
       - run:
           name: Test code
           command: yarn test
+  test-e2e:
+    docker:
+      - image: cypress/base:8
+    steps:
+      - checkout
+      - run:
+          name: Install node modules
+          command: yarn
+      - run:
+          name: Build code
+          command: yarn build
+      - run:
+          name: Run e2e tests
+          command: npx start-server-and-test start http://localhost:3000 test:e2e
   build:
     docker:
       - image: circleci/node:10.15.0
@@ -74,6 +88,7 @@ workflows:
   test_build_plan_deploy:
     jobs:
       - test
+      - test-e2e
       - build
       - plan:
           requires:
