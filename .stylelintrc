@@ -1,0 +1,17 @@
+{
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-property-sort-order-smacss",
+    "stylelint-config-prettier"
+  ],
+  "rules": {
+    "selector-list-comma-newline-after": "never-multi-line",
+    "selector-list-comma-space-after": "always",
+    "color-hex-length": "long",
+    "no-missing-end-of-source-newline": null,
+    "property-no-unknown": [true, { "ignoreProperties": ["font-smoothing"] }],
+    "declaration-empty-line-before": null,
+    "at-rule-no-unknown": null,
+    "function-name-case": null
+  }
+}

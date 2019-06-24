@@ -1,0 +1,91 @@
+.content {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  height: 100%;
+  border: 0.2rem solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.4rem;
+}
+
+.encoded {
+  width: 50%;
+  height: 100%;
+  overflow-y: scroll;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.encoded code {
+  display: block;
+  padding: 2rem;
+  outline: none;
+  font-size: 2.2rem;
+}
+
+.jwt-segment {
+  padding: 0.2rem 0.4rem;
+  transition: all 0.3s ease;
+  border: 0.1rem solid transparent;
+  border-radius: 0.4rem;
+  background-color: transparent;
+}
+
+.jwt-segment:hover {
+  border: 0.1rem solid #f1f160;
+  background-color: #ffff0020;
+}
+
+.decoded section:nth-child(1), .encoded span:nth-child(1) {
+  color: red;
+}
+
+.decoded section:nth-child(2), .encoded span:nth-child(3) {
+  color: green;
+}
+
+.decoded section:nth-child(3), .encoded span:nth-child(5) {
+  color: blue;
+}
+
+.decoded {
+  width: 50%;
+  height: 100%;
+  overflow-y: scroll;
+  border-left: 0.2rem solid rgba(0, 0, 0, 0.1);
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.decoded div {
+  white-space: pre-wrap;
+}
+
+.section-header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  padding: 0.5rem;
+  border-bottom: 0.1rem solid rgba(0, 0, 0, 0.1);
+  background-color: #fafafa;
+  color: #000000;
+  font-size: 1.4rem;
+}
+
+.decoded-header:first-child .section-header {
+  border-top: 0;
+}
+
+.section-body {
+  padding: 2rem;
+  border-bottom: 0.1rem solid rgba(0, 0, 0, 0.1);
+  font-family: monospace;
+  font-size: 1.8rem;
+}
+
+.decoded-header:last-child .section-body {
+  border-bottom: 0;
+}
+
+.decoded-header.highlighted .section-body {
+  background-color: #ffff0020;
+}

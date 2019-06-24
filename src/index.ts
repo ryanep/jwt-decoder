@@ -1,21 +1,27 @@
+import './styles/index.css';
 import { decode } from './utils/jwt';
 
 const encodedElement = document.getElementById('encoded');
 const decodedElement = document.getElementById('decoded');
 
-const handleEncodedChange = (event: Event) => {
-  const input = event.target as HTMLInputElement;
-  if (!input.innerText) {
-    decodedElement.innerText = null;
+const handleEncodedChange = (value: string) => {
+  if (!value) {
+    decodedElement.innerText = '';
     return;
   }
 
-  const segments = input.innerText.split('.');
-  input.innerHTML = `
-    <span class="jwt-segment">${segments[0]}</span><span>.</span><span class="jwt-segment">${segments[1]}</span><span>.</span><span class="jwt-segment">${segments[2]}</span>
+  const [header, payload, signature] = value.split('.');
+  if (!header || !payload || !signature) {
+    decodedElement.innerText = '';
+    return;
+  }
+
+  encodedElement.innerHTML = '';
+  encodedElement.innerHTML = `
+    <span class="jwt-segment">${header}</span><span>.</span><span class="jwt-segment">${payload}</span><span>.</span><span class="jwt-segment">${signature}</span>
   `;
 
-  const decodedJwt = decode(input.innerText);
+  const decodedJwt = decode(value);
   decodedElement.innerHTML = `
     <section class="decoded-header">
       <h2 class="section-header">Header</h2>
@@ -40,8 +46,14 @@ const handleEncodedChange = (event: Event) => {
   `;
 };
 
+const handleEncodedPaste = event => {
+  event.preventDefault();
+  const value = event.clipboardData.getData('text');
+  handleEncodedChange(value);
+};
+
 const initEvents = () => {
-  encodedElement.addEventListener('input', handleEncodedChange);
+  encodedElement.addEventListener('paste', handleEncodedPaste);
 };
 
 initEvents();

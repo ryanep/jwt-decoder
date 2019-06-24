@@ -1,6 +1,7 @@
 import webpack from 'webpack';
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 const config: webpack.Configuration = {
   mode: 'production',
@@ -22,6 +23,14 @@ const config: webpack.Configuration = {
           },
         ],
       },
+      {
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          { loader: 'css-loader', options: { importLoaders: 1 } },
+          'postcss-loader',
+        ],
+      },
     ],
   },
   resolve: {
@@ -32,14 +41,24 @@ const config: webpack.Configuration = {
     },
   },
   output: {
-    // filename: '[name].[hash].js',
     filename: '[name].js',
-    // chunkFilename: '[name].[chunkhash].js',
     path: path.join(process.cwd(), 'dist/'),
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: 'src/templates/index.html',
+      minify: {
+        collapseWhitespace: true,
+        removeComments: true,
+        removeRedundantAttributes: true,
+        removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        useShortDoctype: true,
+      },
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css',
     }),
   ],
 };

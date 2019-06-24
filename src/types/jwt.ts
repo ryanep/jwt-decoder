@@ -5,4 +5,4 @@ export interface Jwt {
   };
   body: any;
   signature: any;
-};
+}

@@ -1,0 +1,21 @@
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  font-size: 62.5%;
+}
+
+body {
+  display: flex;
+  flex-flow: column wrap;
+  height: 100%;
+  margin: 0;
+  padding: 1rem;
+  overflow: hidden;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont;
+  font-size: 1.6rem;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
