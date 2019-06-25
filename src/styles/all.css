@@ -35,15 +35,18 @@
   background-color: #ffff0020;
 }
 
-.decoded section:nth-child(1), .encoded span:nth-child(1) {
+.decoded section:nth-child(1),
+.encoded span:nth-child(1) {
   color: red;
 }
 
-.decoded section:nth-child(2), .encoded span:nth-child(3) {
+.decoded section:nth-child(2),
+.encoded span:nth-child(3) {
   color: green;
 }
 
-.decoded section:nth-child(3), .encoded span:nth-child(5) {
+.decoded section:nth-child(3),
+.encoded span:nth-child(5) {
   color: blue;
 }
 

@@ -1,6 +1,7 @@
 import webpack from 'webpack';
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import HtmlWebpackExcludeAssetsPlugin from 'html-webpack-exclude-assets-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 const config: webpack.Configuration = {
@@ -8,6 +9,7 @@ const config: webpack.Configuration = {
   target: 'web',
   entry: {
     app: './src/index.ts',
+    'service-worker': './src/service-worker.ts',
   },
   module: {
     rules: [
@@ -55,7 +57,9 @@ const config: webpack.Configuration = {
         removeStyleLinkTypeAttributes: true,
         useShortDoctype: true,
       },
+      excludeAssets: [/service-worker.js/],
     }),
+    new HtmlWebpackExcludeAssetsPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[id].css',
