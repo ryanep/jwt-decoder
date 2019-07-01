@@ -17,7 +17,7 @@ describe('utils/jwt', () => {
       const expectedSignature = '__signature__';
       const decodedJwt = decode(jwt);
       expect(decodedJwt.header).toMatchObject(expectedHeader);
-      expect(decodedJwt.body).toMatchObject(expectedBody);
+      expect(decodedJwt.payload).toMatchObject(expectedBody);
       expect(decodedJwt.signature).toBe(expectedSignature);
     });
   });

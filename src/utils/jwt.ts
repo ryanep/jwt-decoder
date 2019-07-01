@@ -1,6 +1,6 @@
-import { Jwt } from '../types/jwt';
+import { DecodedJwt } from '../types/jwt';
 
-export const decode = (jwt: string): Jwt => {
+export const decode = (jwt: string): DecodedJwt => {
   const jwtSegments = jwt.split('.');
 
   if (jwtSegments.length !== 3) {
@@ -11,10 +11,10 @@ export const decode = (jwt: string): Jwt => {
     return window.atob(segment);
   });
 
-  const [header, body] = decoded;
-  const decodedJwt: Jwt = {
+  const [header, payload] = decoded;
+  const decodedJwt: DecodedJwt = {
     header: JSON.parse(header),
-    body: JSON.parse(body),
+    payload: JSON.parse(payload),
     signature: jwtSegments[2],
   };
 

@@ -4,14 +4,39 @@
     <title>JSON Web Token Decoder - jwtdeco.de</title>
   </head>
   <body>
-    <div class="content">
+    <div class="container">
       <div class="encoded">
         <section class="decoded-header">
           <h2 class="section-header">JSON Web Token</h2>
-          <code id="encoded" spellcheck="false" contenteditable></code>
+          <code id="encoded" spellcheck="false">
+            <span class="jwt-segment" data-segment="header"
+              >eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</span
+            >.
+            <span class="jwt-segment" data-segment="payload"
+              >eyJzdWIiOiIxIn0</span
+            >.
+            <span class="jwt-segment" data-segment="signature"
+              >__signature__</span
+            >
+          </code>
         </section>
       </div>
-      <div id="decoded" class="decoded"></div>
+      <div id="decoded" class="decoded">
+        <section class="decoded-header" data-segment="header">
+          <h2 class="section-header">Header</h2>
+          <pre class="decoded-body" data-segment="header">
+{ "alg": "HS256", "typ": "JWT" }</pre
+          >
+        </section>
+        <section class="decoded-header" data-segment="payload">
+          <h2 class="section-header">Payload</h2>
+          <pre class="decoded-body" data-segment="payload">{ "sub": "1" }</pre>
+        </section>
+        <section class="decoded-header" data-segment="signature">
+          <h2 class="section-header">Signature</h2>
+          <pre class="decoded-body" data-segment="signature">__signature__</pre>
+        </section>
+      </div>
     </div>
   </body>
 </html>

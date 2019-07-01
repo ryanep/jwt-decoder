@@ -1,8 +1,14 @@
-export interface Jwt {
+export type DecodedJwt = {
   header: {
     alg: string;
     typ: string;
   };
-  body: any;
+  payload: any;
   signature: any;
-}
+};
+
+export type EncodedJwt = {
+  header: string;
+  payload: string;
+  signature: string;
+};
