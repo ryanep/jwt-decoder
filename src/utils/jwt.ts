@@ -1,22 +1,30 @@
-import { DecodedJwt } from '../types/jwt';
+import { DecodedJwt, EncodedJwt } from '../types/jwt';
 
-export const decode = (jwt: string): DecodedJwt => {
-  const jwtSegments = jwt.split('.');
-
-  if (jwtSegments.length !== 3) {
+export const decode = (encodedJwt: EncodedJwt): DecodedJwt => {
+  if (!encodedJwt.header || !encodedJwt.payload || !encodedJwt.signature) {
     throw new Error('Invalid JWT: Incorrect number of segments');
   }
 
-  const decoded = [jwtSegments[0], jwtSegments[1]].map(segment => {
-    return window.atob(segment);
-  });
+  const decoded = [encodedJwt.header, encodedJwt.payload].map(segment =>
+    window.atob(segment),
+  );
 
   const [header, payload] = decoded;
   const decodedJwt: DecodedJwt = {
     header: JSON.parse(header),
     payload: JSON.parse(payload),
-    signature: jwtSegments[2],
+    signature: encodedJwt.signature,
   };
 
   return decodedJwt;
+};
+
+export const split = (jwt: string): EncodedJwt => {
+  const jwtSegments = jwt.split('.');
+  const [header, payload, signature] = jwtSegments;
+  return {
+    header,
+    payload,
+    signature,
+  };
 };

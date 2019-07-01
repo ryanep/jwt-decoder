@@ -1,6 +1,6 @@
 import './styles/index.css';
-import { decode } from './utils/jwt';
-import { DecodedJwt } from './types/jwt';
+import { decode, split } from './utils/jwt';
+import { DecodedJwt, EncodedJwt } from './types/jwt';
 
 // Containers
 const encodedElement = document.getElementById('encoded');
@@ -29,14 +29,10 @@ const decodedSignature = document.querySelector(
   '.decoded-body[data-segment="signature"]',
 );
 
-const renderToken = (encodedJwt: string) => {
-  if (!encodedJwt) {
-    decodedElement.innerText = '';
-    return;
-  }
+const renderToken = (jwtString: string) => {
+  const encodedJwt = split(jwtString);
 
-  const [header, payload, signature] = encodedJwt.split('.');
-  if (!header || !payload || !signature) {
+  if (!encodedJwt.header || !encodedJwt.payload || !encodedJwt.signature) {
     decodedElement.innerText = '';
     return;
   }
@@ -45,8 +41,8 @@ const renderToken = (encodedJwt: string) => {
   render(encodedJwt, decodedJwt);
 };
 
-const renderEncoded = (jwt: string) => {
-  const [header, payload, signature] = jwt.split('.');
+const renderEncoded = (jwt: EncodedJwt) => {
+  const { header, payload, signature } = jwt;
   encodedHeader.innerHTML = header;
   encodedPayload.innerHTML = payload;
   encodedSignature.innerHTML = signature;
@@ -59,7 +55,7 @@ const renderDecoded = (jwt: DecodedJwt) => {
   decodedSignature.innerHTML = signature;
 };
 
-const render = (encodedJwt: string, decodedJwt: DecodedJwt) => {
+const render = (encodedJwt: EncodedJwt, decodedJwt: DecodedJwt) => {
   renderDecoded(decodedJwt);
   renderEncoded(encodedJwt);
 };
