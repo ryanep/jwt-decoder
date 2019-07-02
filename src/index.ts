@@ -1,10 +1,10 @@
 import './styles/index.css';
-import { decode, split } from './utils/jwt';
 import { DecodedJwt, EncodedJwt } from './types/jwt';
+import { decode, split, isValid } from './utils/jwt';
 
 // Containers
 const encodedElement = document.getElementById('encoded');
-const decodedElement = document.getElementById('decoded');
+// const decodedElement = document.getElementById('decoded');
 
 // Encoded segments
 const decodedSegmentElements = document.querySelectorAll('.jwt-segment');
@@ -30,15 +30,36 @@ const decodedSignature = document.querySelector(
 );
 
 const renderToken = (jwtString: string) => {
-  const encodedJwt = split(jwtString);
+  try {
+    const encodedJwt = split(jwtString);
 
-  if (!encodedJwt.header || !encodedJwt.payload || !encodedJwt.signature) {
-    decodedElement.innerText = '';
-    return;
+    if (!isValid(encodedJwt)) {
+      encodedElement.classList.add('invalid');
+
+      encodedHeader.innerHTML = jwtString;
+      encodedPayload.innerHTML = '';
+      encodedSignature.innerHTML = '';
+
+      decodedHeader.innerHTML = '';
+      decodedPayload.innerHTML = '';
+      decodedSignature.innerHTML = '';
+      return;
+    }
+
+    encodedElement.classList.remove('invalid');
+    const decodedJwt = decode(encodedJwt);
+    render(encodedJwt, decodedJwt);
+  } catch {
+    decodedHeader.innerHTML = '';
+    decodedPayload.innerHTML = '';
+    decodedSignature.innerHTML = '';
+
+    encodedHeader.innerHTML = jwtString;
+    encodedPayload.innerHTML = '';
+    encodedSignature.innerHTML = '';
+
+    encodedElement.classList.add('invalid');
   }
-
-  const decodedJwt = decode(encodedJwt);
-  render(encodedJwt, decodedJwt);
 };
 
 const renderEncoded = (jwt: EncodedJwt) => {
@@ -71,7 +92,7 @@ const initEvents = () => {
   decodedSegmentElements.forEach(decodedSegmentElement => {
     const segment = decodedSegmentElement.getAttribute('data-segment');
     const decodedSection = document.querySelector(
-      `.decoded-header[data-segment=${segment}]`,
+      `.section[data-segment=${segment}]`,
     );
 
     decodedSegmentElement.addEventListener('mouseover', () => {

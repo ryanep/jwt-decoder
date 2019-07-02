@@ -28,3 +28,7 @@ export const split = (jwt: string): EncodedJwt => {
     signature,
   };
 };
+
+export const isValid = (encodedJwt: EncodedJwt): boolean => {
+  return !!encodedJwt.header && !!encodedJwt.payload && !!encodedJwt.signature;
+};

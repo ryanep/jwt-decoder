@@ -6,7 +6,7 @@
   <body>
     <div class="container">
       <div class="encoded">
-        <section class="decoded-header">
+        <section class="section">
           <h2 class="section-header">JSON Web Token</h2>
           <code id="encoded" spellcheck="false">
             <span class="jwt-segment" data-segment="header"
@@ -22,17 +22,17 @@
         </section>
       </div>
       <div id="decoded" class="decoded">
-        <section class="decoded-header" data-segment="header">
+        <section class="section" data-segment="header">
           <h2 class="section-header">Header</h2>
           <pre class="decoded-body" data-segment="header">
 { "alg": "HS256", "typ": "JWT" }</pre
           >
         </section>
-        <section class="decoded-header" data-segment="payload">
+        <section class="section" data-segment="payload">
           <h2 class="section-header">Payload</h2>
           <pre class="decoded-body" data-segment="payload">{ "sub": "1" }</pre>
         </section>
-        <section class="decoded-header" data-segment="signature">
+        <section class="section" data-segment="signature">
           <h2 class="section-header">Signature</h2>
           <pre class="decoded-body" data-segment="signature">__signature__</pre>
         </section>

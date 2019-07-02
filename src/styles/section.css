@@ -1,0 +1,22 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  min-height: 15rem;
+  transition: background-color 0.3s ease;
+}
+
+.section:last-child {
+  flex-grow: 1;
+}
+
+.section:last-child .decoded-body {
+  border-bottom: 0;
+}
+
+.section.highlighted {
+  background-color: #ffff0020;
+}
+
+.section:first-child .section-header {
+  border-top: 0;
+}

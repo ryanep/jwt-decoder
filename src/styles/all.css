@@ -7,12 +7,20 @@
   border-radius: 0.4rem;
 }
 
+.invalid {
+  background-color: #ffe0e0;
+}
+
 .encoded {
   width: 50%;
   height: 100%;
   overflow-y: scroll;
   font-size: 2rem;
   font-weight: 600;
+}
+
+.encoded .section {
+  height: 100%;
 }
 
 .decoded {
@@ -28,6 +36,7 @@
 
 .encoded code {
   display: block;
+  flex-grow: 1;
   padding: 2rem;
   outline: none;
   font-size: 2.2rem;
@@ -78,29 +87,10 @@
   font-size: 1.4rem;
 }
 
-.decoded-header {
-  transition: background-color 0.3s ease;
-}
-
-.decoded-header.highlighted {
-  background-color: #ffff0020;
-}
-
-.decoded-header:first-child .section-header {
-  border-top: 0;
-}
-
 .decoded-body {
+  flex-grow: 1;
   padding: 2rem;
   border-bottom: 0.1rem solid rgba(0, 0, 0, 0.1);
   font-family: monospace;
   font-size: 1.8rem;
-}
-
-.decoded-header:last-child {
-  flex-grow: 1;
-}
-
-.decoded-header:last-child .decoded-body {
-  border-bottom: 0;
 }
