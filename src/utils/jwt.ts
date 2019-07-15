@@ -9,14 +9,17 @@ export const decode = (encodedJwt: EncodedJwt): DecodedJwt => {
     window.atob(segment),
   );
 
-  const [header, payload] = decoded;
-  const decodedJwt: DecodedJwt = {
-    header: JSON.parse(header),
-    payload: JSON.parse(payload),
-    signature: encodedJwt.signature,
-  };
-
-  return decodedJwt;
+  try {
+    const [header, payload] = decoded;
+    const decodedJwt: DecodedJwt = {
+      header: JSON.parse(header),
+      payload: JSON.parse(payload),
+      signature: encodedJwt.signature,
+    };
+    return decodedJwt;
+  } catch {
+    throw new Error('Invalid JWT: Payload invalid');
+  }
 };
 
 export const split = (jwt: string): EncodedJwt => {

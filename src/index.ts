@@ -29,20 +29,22 @@ const decodedSignature = document.querySelector(
   '.decoded-body[data-segment="signature"]',
 );
 
+const displayInvalidState = (jwtString: string) => {
+  encodedElement.classList.add('invalid');
+  encodedHeader.innerHTML = jwtString;
+  encodedPayload.innerHTML = '';
+  encodedSignature.innerHTML = '';
+  decodedHeader.innerHTML = '';
+  decodedPayload.innerHTML = '';
+  decodedSignature.innerHTML = '';
+};
+
 const renderToken = (jwtString: string) => {
   try {
     const encodedJwt = split(jwtString);
 
     if (!isValid(encodedJwt)) {
-      encodedElement.classList.add('invalid');
-
-      encodedHeader.innerHTML = jwtString;
-      encodedPayload.innerHTML = '';
-      encodedSignature.innerHTML = '';
-
-      decodedHeader.innerHTML = '';
-      decodedPayload.innerHTML = '';
-      decodedSignature.innerHTML = '';
+      displayInvalidState(jwtString);
       return;
     }
 
@@ -50,15 +52,7 @@ const renderToken = (jwtString: string) => {
     const decodedJwt = decode(encodedJwt);
     render(encodedJwt, decodedJwt);
   } catch {
-    decodedHeader.innerHTML = '';
-    decodedPayload.innerHTML = '';
-    decodedSignature.innerHTML = '';
-
-    encodedHeader.innerHTML = jwtString;
-    encodedPayload.innerHTML = '';
-    encodedSignature.innerHTML = '';
-
-    encodedElement.classList.add('invalid');
+    displayInvalidState(jwtString);
   }
 };
 
