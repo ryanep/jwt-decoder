@@ -11,11 +11,9 @@
           <code id="encoded" spellcheck="false">
             <span class="jwt-segment" data-segment="header"
               >eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</span
-            >.
-            <span class="jwt-segment" data-segment="payload"
+            >.<span class="jwt-segment" data-segment="payload"
               >eyJzdWIiOiIxIn0</span
-            >.
-            <span class="jwt-segment" data-segment="signature"
+            >.<span class="jwt-segment" data-segment="signature"
               >__signature__</span
             >
           </code>
@@ -25,12 +23,19 @@
         <section class="section" data-segment="header">
           <h2 class="section-header">Header</h2>
           <pre class="decoded-body" data-segment="header">
-{ "alg": "HS256", "typ": "JWT" }</pre
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}</pre
           >
         </section>
         <section class="section" data-segment="payload">
           <h2 class="section-header">Payload</h2>
-          <pre class="decoded-body" data-segment="payload">{ "sub": "1" }</pre>
+          <pre class="decoded-body" data-segment="payload">
+{
+  "sub": "1"
+}</pre
+          >
         </section>
         <section class="section" data-segment="signature">
           <h2 class="section-header">Signature</h2>
