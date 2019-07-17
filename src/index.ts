@@ -41,7 +41,7 @@ const displayInvalidState = (jwtString: string) => {
 
 const renderToken = (jwtString: string) => {
   try {
-    const encodedJwt = split(jwtString);
+    const encodedJwt = split(jwtString.replace(/\s/g, ''));
 
     if (!isValid(encodedJwt)) {
       displayInvalidState(jwtString);
