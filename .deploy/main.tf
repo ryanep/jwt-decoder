@@ -45,7 +45,7 @@ resource "aws_cloudfront_distribution" "cdn_s3_distribution" {
     }
   }
 
-  aliases         = ["jwtdecode.ryanep.com"]
+  aliases         = ["jwtdeco.de"]
   enabled         = true
   is_ipv6_enabled = true
   default_root_object = "index.html"
@@ -108,8 +108,8 @@ provider "digitalocean" {
 }
 
 resource "digitalocean_record" "cdn_record" {
-  domain = "ryanep.com"
+  domain = "jwtdeco.de"
   type   = "CNAME"
-  name   = "jwtdecode"
+  name   = "www."
   value  = "${aws_cloudfront_distribution.cdn_s3_distribution.domain_name}."
 }
