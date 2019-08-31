@@ -28,7 +28,7 @@ resource "aws_s3_bucket" "cdn" {
 }
 
 locals {
-  s3_origin_id = "S3-jwtdecode.ryanep.com"
+  s3_origin_id = "S3-jwtdeco.de"
 }
 
 resource "aws_cloudfront_origin_access_identity" "origin_access_identity" {
@@ -45,7 +45,7 @@ resource "aws_cloudfront_distribution" "cdn_s3_distribution" {
     }
   }
 
-  aliases         = ["jwtdeco.de"]
+  aliases         = ["www.jwtdeco.de"]
   enabled         = true
   is_ipv6_enabled = true
   default_root_object = "index.html"
@@ -92,7 +92,7 @@ resource "aws_cloudfront_distribution" "cdn_s3_distribution" {
   }
 
   viewer_certificate {
-    acm_certificate_arn = "arn:aws:acm:us-east-1:992080571933:certificate/a881ed23-c6fe-4ee1-8a2f-2b7769412ee3"
+    acm_certificate_arn = "arn:aws:acm:us-east-1:992080571933:certificate/8ad2b36d-687b-42d2-8915-00ca328ea452"
     ssl_support_method  = "sni-only"
   }
 
