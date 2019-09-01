@@ -59,7 +59,7 @@
 
 .decoded section:nth-child(1),
 .encoded span:nth-child(1) {
-  color: red;
+  color: #b60000;
 }
 
 .decoded section:nth-child(2),
