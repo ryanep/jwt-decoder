@@ -10,6 +10,7 @@
 
 .invalid {
   background-color: #ffe0e0;
+  color: transparent;
 }
 
 .encoded {
@@ -60,17 +61,17 @@
 
 .decoded section:nth-child(1),
 .encoded span:nth-child(1) {
-  color: #b60000;
+  color: var(--red);
 }
 
 .decoded section:nth-child(2),
 .encoded span:nth-child(2) {
-  color: green;
+  color: var(--green);
 }
 
 .decoded section:nth-child(3),
 .encoded span:nth-child(3) {
-  color: blue;
+  color: var(--blue);
 }
 
 .decoded div {
@@ -101,6 +102,10 @@
     border-color: #111111;
     background-color: #222222;
     color: #eeeeee;
+  }
+
+  .invalid {
+    background-color: #612525;
   }
 
   .decoded-body {

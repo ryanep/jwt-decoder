@@ -9,7 +9,8 @@
     "start": "http-serve -p 3000 ./dist",
     "build": "webpack --config ./config/webpack/webpack.config.ts",
     "fmt": "prettier --write './**/*.{ts,html,json,css}'",
-    "lint": "tslint -c tslint.json './src/**/*.ts'",
+    "lint": "yarn lint:ts && yarn lint:css",
+    "lint:ts": "tslint -c tslint.json './src/**/*.ts'",
     "lint:css": "stylelint './src/**/*.css'",
     "test": "jest",
     "test:e2e": "cypress run"

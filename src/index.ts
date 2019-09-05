@@ -99,11 +99,11 @@ const initEvents = () => {
   });
 };
 
-// const initServiceWorker = () => {
-//   if ('serviceWorker' in navigator) {
-//     navigator.serviceWorker.register('service-worker.js');
-//   }
-// };
+const initServiceWorker = () => {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js');
+  }
+};
 
 initEvents();
-// initServiceWorker();
+initServiceWorker();
