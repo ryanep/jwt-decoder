@@ -82,7 +82,7 @@ const handleEncodedPaste = (event: ClipboardEvent) => {
 };
 
 const initEvents = () => {
-  encodedElement.addEventListener('paste', handleEncodedPaste);
+  window.addEventListener('paste', handleEncodedPaste);
   decodedSegmentElements.forEach(decodedSegmentElement => {
     const segment = decodedSegmentElement.getAttribute('data-segment');
     const decodedSection = document.querySelector(
