@@ -1,6 +1,7 @@
-const wp = require('@cypress/webpack-preprocessor');
+// @ts-ignore
+import wp from '@cypress/webpack-preprocessor';
 
-module.exports = on => {
+module.exports = (on: any) => {
   const options = {
     webpackOptions: {
       resolve: {
