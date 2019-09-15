@@ -21,6 +21,12 @@
   border-top: 0;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .section {
+    transition: none;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   .section.highlighted {
     background-color: #444444;

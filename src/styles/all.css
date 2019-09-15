@@ -97,6 +97,12 @@
   font-size: 1.8rem;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .jwt-segment {
+    transition: none;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   .section-header {
     border-color: #111111;
@@ -120,6 +126,10 @@
 
   .encoded code {
     color: var(--white);
+  }
+
+  .encoded code.invalid {
+    color: transparent;
   }
 
   .decoded section:nth-child(1),
