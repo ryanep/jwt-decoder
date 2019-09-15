@@ -2,32 +2,44 @@ import './styles/index.css';
 import { DecodedJwt, EncodedJwt } from './types/jwt';
 import { decode, split, isValid } from './utils/jwt';
 
-// Containers
 const encodedElement = document.getElementById('encoded');
-// const decodedElement = document.getElementById('decoded');
+const encodedHeader = document.getElementById('encoded-header');
+const encodedPayload = document.getElementById('encoded-payload');
+const encodedSignature = document.getElementById('encoded-signature');
+const decodedHeader = document.getElementById('decoded-header');
+const decodedPayload = document.getElementById('decoded-payload');
+const decodedSignature = document.getElementById('decoded-signature');
 
-// Encoded segments
 const decodedSegmentElements = document.querySelectorAll('.jwt-segment');
-const encodedHeader = document.querySelector(
-  '.jwt-segment[data-segment="header"]',
-);
-const encodedPayload = document.querySelector(
-  '.jwt-segment[data-segment="payload"]',
-);
-const encodedSignature = document.querySelector(
-  '.jwt-segment[data-segment="signature"]',
-);
+const copyButtons = document.querySelectorAll('.section-header-button');
 
-// Decoded segments
-const decodedHeader = document.querySelector(
-  '.decoded-body[data-segment="header"]',
-);
-const decodedPayload = document.querySelector(
-  '.decoded-body[data-segment="payload"]',
-);
-const decodedSignature = document.querySelector(
-  '.decoded-body[data-segment="signature"]',
-);
+const copyToClipboard = (value: string) => {
+  const textbox = document.createElement('textarea');
+
+  let stringValue = '';
+  try {
+    const val = JSON.parse(value);
+    stringValue = JSON.stringify(val, null, 2);
+  } catch (error) {
+    stringValue = value;
+  }
+
+  textbox.value = stringValue;
+  textbox.classList.add('copy-textbox');
+  document.body.appendChild(textbox);
+  textbox.select();
+  document.execCommand('copy');
+  document.body.removeChild(textbox);
+};
+
+copyButtons.forEach(copyButton => {
+  copyButton.addEventListener('click', async (event: Event) => {
+    const button = event.currentTarget as HTMLElement;
+    const buttonCopyId = button.getAttribute('data-copy');
+    const copyTarget = document.getElementById(buttonCopyId);
+    copyToClipboard(copyTarget.innerText);
+  });
+});
 
 const displayInvalidState = (jwtString: string) => {
   encodedElement.classList.add('invalid');

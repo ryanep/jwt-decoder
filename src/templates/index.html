@@ -22,6 +22,9 @@
       content="An offline-ready lightweight JSON Web Token (JWT) decoder"
     />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#317EFB" />
+    <meta name="google" value="notranslate" />
+    <link rel="manifest" href="/manifest.json" />
     <link rel="preconnect" href="https://www.google-analytics.com" />
     <link rel="preconnect" href="https://www.googletagmanager.com" />
   </head>
@@ -29,22 +32,44 @@
     <div class="container">
       <div class="encoded">
         <section class="section">
-          <h2 class="section-header">JSON Web Token</h2>
+          <h2 class="section-header">
+            <div class="section-title">JSON Web Token</div>
+            <button class="section-header-button" data-copy="encoded">
+              Copy
+            </button>
+          </h2>
           <code id="encoded" spellcheck="false">
-            <span class="jwt-segment" data-segment="header"
+            <span class="jwt-segment" data-segment="header" id="encoded-header"
               >eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</span
-            >.<span class="jwt-segment" data-segment="payload"
+            >.<span
+              class="jwt-segment"
+              data-segment="payload"
+              id="encoded-payload"
               >eyJzdWIiOiIxIn0</span
-            >.<span class="jwt-segment" data-segment="signature"
+            >.<span
+              class="jwt-segment"
+              data-segment="signature"
+              id="encoded-signature"
               >__signature__</span
             >
           </code>
+          <input
+            type="text"
+            id="textbox"
+            value="asdalkjdaklsdjkas"
+            style="clip-path: inset(10px 20px 30px 40px);"
+          />
         </section>
       </div>
       <div id="decoded" class="decoded">
         <section class="section" data-segment="header">
-          <h2 class="section-header">Header</h2>
-          <pre class="decoded-body" data-segment="header">
+          <h2 class="section-header">
+            <div class="section-title">Header</div>
+            <button class="section-header-button" data-copy="decoded-header">
+              Copy
+            </button>
+          </h2>
+          <pre class="decoded-body" data-segment="header" id="decoded-header">
 {
   "alg": "HS256",
   "typ": "JWT"
@@ -52,16 +77,32 @@
           >
         </section>
         <section class="section" data-segment="payload">
-          <h2 class="section-header">Payload</h2>
-          <pre class="decoded-body" data-segment="payload">
+          <h2 class="section-header">
+            <div class="section-title">Payload</div>
+            <button class="section-header-button" data-copy="decoded-payload">
+              Copy
+            </button>
+          </h2>
+          <pre class="decoded-body" data-segment="payload" id="decoded-payload">
 {
   "sub": "1"
 }</pre
           >
         </section>
         <section class="section" data-segment="signature">
-          <h2 class="section-header">Signature</h2>
-          <pre class="decoded-body" data-segment="signature">__signature__</pre>
+          <h2 class="section-header">
+            <div class="section-title">Signature</div>
+            <button class="section-header-button" data-copy="decoded-signature">
+              Copy
+            </button>
+          </h2>
+          <pre
+            class="decoded-body"
+            data-segment="signature"
+            id="decoded-signature"
+          >
+__signature__</pre
+          >
         </section>
       </div>
     </div>
