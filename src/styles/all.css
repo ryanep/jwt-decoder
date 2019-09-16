@@ -30,7 +30,7 @@
   flex-flow: column;
   width: 50%;
   height: 100%;
-  overflow-y: scroll;
+  overflow-y: hidden;
   border-left: 0.2rem solid rgba(0, 0, 0, 0.1);
   font-size: 2rem;
   font-weight: 600;
@@ -84,7 +84,9 @@
   position: sticky;
   top: 0;
   flex-direction: row;
+  flex-shrink: 0;
   padding: 0.5rem 1rem;
+  border-top: 0.1rem solid rgba(0, 0, 0, 0.05);
   border-bottom: 0.1rem solid rgba(0, 0, 0, 0.1);
   background-color: #fafafa;
   color: #000000;
@@ -113,7 +115,7 @@
 .decoded-body {
   flex-grow: 1;
   padding: 2rem;
-  border-bottom: 0.1rem solid rgba(0, 0, 0, 0.1);
+  overflow-y: scroll;
   font-family: monospace;
   font-size: 1.8rem;
 }
