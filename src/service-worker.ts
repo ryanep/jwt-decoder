@@ -1,4 +1,4 @@
-const cacheVersion = 1;
+const cacheVersion = 2;
 const cacheName = `offline-cache-${cacheVersion}`;
 const cacheFiles = ['/', '/app.css', '/app.js'];
 

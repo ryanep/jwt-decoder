@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`utils/json formatJson should return formatted JSON string with valid object 1`] = `
+"{
+  \\"test\\": true
+}"
+`;

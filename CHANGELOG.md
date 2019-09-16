@@ -5,6 +5,7 @@
 - Add dark interface
 - Add reduced motion styles
 - Move paste event listener to window
+- Add section copy buttons
 
 ## 0.1.0
 
