@@ -13,6 +13,7 @@
     "lint:ts": "tslint -c tslint.json './src/**/*.ts'",
     "lint:css": "stylelint './src/**/*.css'",
     "test": "jest --config ./jest.config.json",
+    "test:coverage": "jest --coverage --config ./jest.config.json",
     "test:e2e": "cypress run"
   },
   "devDependencies": {

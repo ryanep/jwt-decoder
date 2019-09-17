@@ -1,5 +1,6 @@
-import { DecodedJwt, EncodedJwt } from '../types/jwt';
 import { parseJson } from './json';
+import { decodeBase64 } from './base64';
+import { DecodedJwt, EncodedJwt } from '../types/jwt';
 
 export const decodeJwt = (encodedJwt: EncodedJwt): DecodedJwt | null => {
   if (!encodedJwt) {
@@ -7,7 +8,7 @@ export const decodeJwt = (encodedJwt: EncodedJwt): DecodedJwt | null => {
   }
 
   const decoded = [encodedJwt.header, encodedJwt.payload].map(segment =>
-    window.atob(segment),
+    decodeBase64(segment),
   );
   const [header, payload] = decoded;
   const decodedJwt: DecodedJwt = {
@@ -32,8 +33,4 @@ export const splitJwt = (jwt: string): EncodedJwt => {
     payload,
     signature,
   };
-};
-
-export const isValid = (encodedJwt: EncodedJwt): boolean => {
-  return !!encodedJwt.header && !!encodedJwt.payload && !!encodedJwt.signature;
 };
