@@ -1,6 +1,7 @@
 .terraform/
 dist/
 node_modules/
+cypress/screenshots/
 cypress/videos/
 *.log
 coverage/
