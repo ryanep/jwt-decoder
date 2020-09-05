@@ -45,9 +45,9 @@ resource "aws_cloudfront_distribution" "cdn_s3_distribution" {
     }
   }
 
-  aliases         = ["www.jwtdeco.de"]
-  enabled         = true
-  is_ipv6_enabled = true
+  aliases             = ["jwt.ryanep.com"]
+  enabled             = true
+  is_ipv6_enabled     = true
   default_root_object = "index.html"
 
   ordered_cache_behavior {
@@ -92,7 +92,7 @@ resource "aws_cloudfront_distribution" "cdn_s3_distribution" {
   }
 
   viewer_certificate {
-    acm_certificate_arn = "arn:aws:acm:us-east-1:992080571933:certificate/8ad2b36d-687b-42d2-8915-00ca328ea452"
+    acm_certificate_arn = "arn:aws:acm:us-east-1:992080571933:certificate/a881ed23-c6fe-4ee1-8a2f-2b7769412ee3"
     ssl_support_method  = "sni-only"
   }
 
@@ -108,8 +108,8 @@ provider "digitalocean" {
 }
 
 resource "digitalocean_record" "cdn_record" {
-  domain = "jwtdeco.de"
+  domain = "ryanep.com"
   type   = "CNAME"
-  name   = "www."
+  name   = "jwt."
   value  = "${aws_cloudfront_distribution.cdn_s3_distribution.domain_name}."
 }
